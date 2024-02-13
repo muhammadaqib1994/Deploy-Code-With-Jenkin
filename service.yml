@@ -1,0 +1,33 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-app-service
+spec:
+  selector:
+    app: helloworld-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000 
+      nodePort: 31258            # will allocate a port from a range (default: 30000-32767)
+  type: NodePort
+
+   
+
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: my-ingress
+# spec:
+#   rules:
+#   - http:
+#       paths:
+#       - path: /
+#         pathType: Prefix
+#         backend:
+#           service:
+#             name: node-app-service
+#             port:
+#               number: 80
